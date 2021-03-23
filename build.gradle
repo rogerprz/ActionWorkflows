@@ -25,14 +25,3 @@ sonarqube {
     property "sonar.host.url", "https://sonarcloud.io"
   }
 }
-
-checkstyle {
-    toolVersion '7.8.1'
-    configFile file("config/checkstyle/checkstyle.xml")
-}
-checkstyleMain {
-    source ='src/main/java'
-}
-checkstyleTest {
-    source ='src/test/java'
-}

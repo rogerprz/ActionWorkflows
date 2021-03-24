@@ -16,11 +16,11 @@ jobs:
         with: 
           java-version: 1.11
       - name: Build with Gradle
-        run: ./gradlew build sonarqube -DGRADLE_OPTS=-Xmx1024m
+        run: ./gradlew build sonarqube
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#           GRADLE_OPTS: -Xmx1024m
+          GRADLE_OPTS: -Xmx1024m
         
 #       - name: SonarCloud scan
 #         uses: sonarsource/sonarcloud-github-action@master

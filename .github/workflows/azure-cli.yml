@@ -11,12 +11,11 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-#         allow-no-subscriptions: true
     
-    - name: Azure CLI script
+    - name: Run Start Azure App Service
       uses: azure/CLI@v1
       with:
         azcliversion: 2.0.72
         inlineScript: |
           az account show
-          az storage -h
+          az webapp stop --name "valet-app" --resource-group valet-azure-resource-group

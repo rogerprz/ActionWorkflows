@@ -18,4 +18,4 @@ jobs:
         azcliversion: 2.0.72
         inlineScript: |
           az account show
-          az webapp stop --name "valet-app" --resource-group valet-azure-resource-group
+          az webapp stop --name valet-app --resource-group valet-azure-resource-group

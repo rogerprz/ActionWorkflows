@@ -15,7 +15,6 @@ jobs:
     - name: Run Start Azure App Service
       uses: azure/CLI@v1
       with:
-        azcliversion: 2.0.72
         inlineScript: |
           az account show
           az webapp stop --name valet-app --resource-group valet-azure-resource-group

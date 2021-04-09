@@ -17,4 +17,5 @@ jobs:
       with:
         inlineScript: |
           az account show
-          az webapp stop --name valet-app --resource-group valet-azure-resource-group
+          az webapp stop --name valet-app 
+          # --resource-group valet-azure-resource-group

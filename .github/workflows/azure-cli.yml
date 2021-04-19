@@ -19,6 +19,7 @@ jobs:
           az account show
           az webapp restart --name valetapp --resource-group valet-resource-group
           JOBS=$(az webapp webjob continuous list --name "valetapp" --resource-group valet-resource-group --subscription "Visual Studio Enterprise" --query "[].name" --output tsv) 
+          echo "JOBS: $JOBS"
           echo $JOBS | while read line ; do
              web_job_name="${line##*/}" 
              echo "UPDATED: $web_job_name"

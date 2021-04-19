@@ -10,7 +10,7 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets.AZURE_PERSONAL_CREDS }}
     
     - name: Run Start Azure App Service
       uses: azure/CLI@v1

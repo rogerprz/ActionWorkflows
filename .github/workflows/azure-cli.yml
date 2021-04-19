@@ -16,7 +16,6 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az account show
           az webapp restart --name valetapp --resource-group valet-resource-group
           JOBS=$(az webapp webjob continuous list --name "valetapp" --resource-group valet-resource-group --subscription "Visual Studio Enterprise" --query "[].name" --output tsv) 
           echo "JOBS: $JOBS"

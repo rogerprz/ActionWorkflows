@@ -18,5 +18,5 @@ jobs:
         inlineScript: |
           az account show
           az webapp restart --name valetapp --resource-group valet-resource-group
-          az webapp webjob continuous start --name "valetapp" --resource-group valet-resource-group --subscription "Azure Subscription" --webjob-name webjob-name
-          # --resource-group valet-azure-resource-group
+          az webapp webjob continuous start --name "valetapp" --resource-group valet-resource-group --subscription "Visual Studio Enterprise" --webjob-name webjob-name
+# --resource-group valet-azure-resource-group

@@ -15,13 +15,12 @@ jobs:
     - name: Run Start Azure App Service
       uses: azure/CLI@v1
       with:
+# az webapp restart --name valetapp --resource-group valet-resource-group
         inlineScript: |
-          az webapp restart --name valetapp --resource-group valet-resource-group
-          JOBS="$(az webapp webjob continuous list --name "valetapp" --resource-group valet-resource-group --subscription "Visual Studio Enterprise" --query "[].name" --output tsv)" 
-          echo "JOBS: $JOBS"
-          echo "$JOBS" | while read line ; do
+          WEB_JOBS="$(az webapp webjob continuous list --name "valetapp" --resource-group valet-resource-group --subscription "Visual Studio Enterprise" --query "[].name" --output tsv)" 
+          echo "$WEB_JOBS" | while read line ; do
              web_job_name="${line##*/}" 
-             echo "UPDATED: $web_job_name"
+
              az webapp webjob continuous start --name "valetapp" --resource-group valet-resource-group --subscription "Visual Studio Enterprise" --webjob-name "$web_job_name"
           done
   # az webapp webjob continuous start --name "valetapp" --resource-group valet-resource-group --subscription "Visual Studio Enterprise" --webjob-name webjob-name

@@ -10,13 +10,18 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-#         allow-no-subscriptions: true
+        creds: ${{ secrets.AZURE_PERSONAL_CREDS }}
     
-    - name: Azure CLI script
+    - name: Run Start Azure App Service
       uses: azure/CLI@v1
       with:
-        azcliversion: 2.0.72
+# az webapp restart --name valetapp --resource-group valet-resource-group
         inlineScript: |
-          az account show
-          az storage -h
+          WEB_JOBS="$(az webapp webjob continuous list --name "valetapp" --resource-group valet-resource-group --subscription "Visual Studio Enterprise" --query "[].name" --output tsv)" 
+          echo "$WEB_JOBS" | while read line ; do
+             web_job_name="${line##*/}" 
+
+             az webapp webjob continuous start --name "valetapp" --resource-group valet-resource-group --subscription "Visual Studio Enterprise" --webjob-name "$web_job_name"
+          done
+  # az webapp webjob continuous start --name "valetapp" --resource-group valet-resource-group --subscription "Visual Studio Enterprise" --webjob-name webjob-name
+# --resource-group valet-azure-resource-group

@@ -1,4 +1,4 @@
-name: Azure Func - Linux Node
+name: ADO Az Func - Linux Node
 
 on: workflow_dispatch
 

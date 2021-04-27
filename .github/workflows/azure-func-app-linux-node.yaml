@@ -30,7 +30,7 @@ jobs:
     - name: 'Login via Azure CLI'
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
+        creds: ${{ secrets.AZURE_RBAC_LINUX_CREDS }}
     - name: 'Resolve Project Dependencies Using Npm'
       shell: bash
       run: |

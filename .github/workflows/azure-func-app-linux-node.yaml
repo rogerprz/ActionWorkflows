@@ -1,7 +1,6 @@
-name: Deploy Node.js project to Azure Function App
+name: Azure Func - Linux Node
 
-on:
-  [push]
+on: workflow_dispatch
 
 # CONFIGURATION
 # For help, go to https://github.com/Azure/Actions

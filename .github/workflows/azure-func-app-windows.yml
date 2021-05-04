@@ -17,7 +17,7 @@ jobs:
     - name: 'Login via Azure CLI'
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_RBAC_LINUX_CREDS }}
+        creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
 # App Service Settings
     - uses: azure/appservice-settings@v1
       with:

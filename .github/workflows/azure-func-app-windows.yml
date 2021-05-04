@@ -1,0 +1,35 @@
+name: ADO Az Func - Windows
+
+on: workflow_dispatch
+
+env:
+  AZURE_FUNCTIONAPP_NAME: valet-funct-app    # set this to your application's name
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    environment: dev
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@master
+# Azure CLi
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_RBAC_LINUX_CREDS }}
+# App Service Settings
+    - uses: azure/appservice-settings@v1
+      with:
+        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        slot-name: 'production'  # Optional and needed only if the settings have to be configured on the specific deployment slot
+#         '${{ secrets.APP_SETTINGS }}' 
+
+      id: settings
+# Azure Function App
+    - name: 'Run Azure Functions Action'
+      uses: Azure/functions-action@v1
+      with:
+        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+

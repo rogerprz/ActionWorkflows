@@ -5,6 +5,7 @@ on: workflow_dispatch
 env:
   AZURE_FUNCTIONAPP_NAME: valet-funct-app    # set this to your application's name
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  RESOURCE_GROUP: "valet-resource-group"
 
 jobs:
   build-and-deploy:
@@ -13,11 +14,24 @@ jobs:
     steps:
     - name: 'Checkout GitHub Action'
       uses: actions/checkout@master
-# Azure CLi
+# Publish Artifact - Upload
+    - name: Publish artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: function
+        path: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/dbz
+# Azure CLI Login
     - name: 'Login via Azure CLI'
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
+# AZ CLI Action
+    - name: Azure CLI Action
+      uses: Azure/cli@1.0.4
+      with:
+    # Specify the script here
+        inlineScript: az functionapp deployment source config-zip -g "${{ env.RESOURCE_GROUP }}" -n "${{ env.AZURE_FUNCTIONAPP_NAME }}" --src /output
+
 # App Service Settings
     - uses: azure/appservice-settings@v1
       with:

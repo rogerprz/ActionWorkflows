@@ -31,4 +31,4 @@ jobs:
     - name: run command
       shell: bash
       run: echo "hey there"
-      if: needs.build-one.result == "Succeeded"
+      if: needs.build-one.result == 'Succeeded'

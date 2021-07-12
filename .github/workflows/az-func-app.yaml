@@ -15,7 +15,7 @@ jobs:
     - uses: Azure/functions-action@v1
       with:
         app-name: valet-func-app-2
-        package: "${{ github.workspace }}/**/*.zip"
+        package: "${{ github.workspace }}/*.zip"
         slot-name: production
     # The Azure Function App does not accept glob patterns. Consider updating the package path.
     - uses: Azure/functions-action@v1

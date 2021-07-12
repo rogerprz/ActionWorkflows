@@ -10,7 +10,7 @@ jobs:
       uses: actions/checkout@v2
     - uses: Azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_RBAC_LINUX_CREDS }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
     # The Azure Function App does not accept glob patterns. Consider updating the package path.
     - uses: Azure/functions-action@v1
       with:

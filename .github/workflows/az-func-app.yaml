@@ -1,4 +1,4 @@
-name: valet-project/AzureFunctionApp
+name: AzureFunctionApp
 
 on: workflow_dispatch
 

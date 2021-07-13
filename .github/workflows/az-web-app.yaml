@@ -1,4 +1,4 @@
-name: valet-project/AzWebApp
+name: AzWebApp
 on: workflow_dispatch
 jobs:
   Job:

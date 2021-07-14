@@ -1,0 +1,18 @@
+name: matrix-bug-14
+on: workflow_dispatch
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+        - GameBuild_Configuration: Release
+          Test_Infrastructure_Command: "-DTEST_INFRASTRUCTURE_ENABLED=OFF"
+        - GameBuild_Configuration: Publish
+          Test_Infrastructure_Command: "-DTEST_INFRASTRUCTURE_ENABLED=ON"
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - run: echo hello world
+    - name: Build
+      run: python gen_proj\${{ env.BuildName }}.py --build ${{ env.UnityFlag }} --package --noBuildTelemetry --config ${{ env.GameBuild_Configuration }} --cmakeCommandArgs="-DPARTNER_BUILD=${{ env.MC3PPBUILD }} ${{ env.Test_Infrastructure_Command }} -DDISABLE_DEBUG_INFO=true ${{ env.HideSymbols }}"

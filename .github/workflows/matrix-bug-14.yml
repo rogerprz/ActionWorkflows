@@ -10,6 +10,8 @@ jobs:
           Test_Infrastructure_Command: "-DTEST_INFRASTRUCTURE_ENABLED=OFF"
         - GameBuild_Configuration: Publish
           Test_Infrastructure_Command: "-DTEST_INFRASTRUCTURE_ENABLED=ON"
+        nodeVersion:
+        - '6.0'
     steps:
     - name: checkout
       uses: actions/checkout@v2

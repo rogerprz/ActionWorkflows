@@ -8,8 +8,8 @@ jobs:
       uses: actions/checkout@v2
     - run: echo "Hello"
   B:
-#     needs:
-#     - A
+    needs:
+    - A
     runs-on: ubuntu-latest
     if: success()
     steps:

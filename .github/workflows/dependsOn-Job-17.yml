@@ -30,7 +30,7 @@ jobs:
     needs:
     - A
     runs-on: ubuntu-latest
-    if: failed() &&  needs.A.result == 'success'
+    if: failure() &&  needs.A.result == 'success'
     steps:
     - name: checkout
       uses: actions/checkout@v2

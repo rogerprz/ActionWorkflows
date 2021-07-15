@@ -19,7 +19,6 @@ jobs:
       "echo no_result:${{ needs.A }}"
       "echo eq_succ_():${{ needs.A.result == success() }}"
       "echo eq_succ_no_():${{ needs.A.result == success }}"
-     # "echo eq_str:${{ needs.A.result == 'success' }} "
   B:
     needs:
     - A

@@ -8,6 +8,8 @@ jobs:
       uses: actions/checkout@v2
     - run: echo "Hello"
   C:
+   needs:
+   - A
    runs-on: ubuntu-latest
    steps:
    - name: checkout

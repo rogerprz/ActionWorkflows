@@ -1,5 +1,5 @@
 name: dependsOn-Job-17
-on: workflow_dispatch
+on: push
 jobs:
   A:
     runs-on: ubuntu-latest

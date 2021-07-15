@@ -7,11 +7,17 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
     - run: echo "Hello"
+  C:
+   runs-on: ubuntu-latest
+   steps:
+   - name: checkout
+     uses: actions/checkout@v2
+   - run: "echo ${{ needs.A.result }}"
   B:
-#     needs:
-#     - A
+    needs:
+    - A
     runs-on: ubuntu-latest
-    if: success()
+    if: needs.A.result == success()
     steps:
     - name: checkout
       uses: actions/checkout@v2

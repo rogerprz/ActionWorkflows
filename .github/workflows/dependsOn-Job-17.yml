@@ -26,6 +26,15 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
     - run: echo this will run when A runs and succeeds
+  D:
+    needs:
+    - A
+    runs-on: ubuntu-latest
+    if: failed() &&  needs.A.result == 'success'
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - run: echo this will run when A runs and succeeds
 
 
 #  C:

@@ -30,12 +30,12 @@ jobs:
         Write-Host "##vso[task.setvariable variable=agent.jobstatus;]canceled"
         Write-Host "##vso[task.complete result=Canceled;]DONE"
       shell: pwsh
-  D:
-    needs:
-    - C
-    runs-on: ubuntu-latest
-    if: cancelled()
-    steps:
-    - name: checkout
-      uses: actions/checkout@v2
-    - run: echo "this job will only run if C is canceled"
+#   D:
+#     needs:
+#     - C
+#     runs-on: ubuntu-latest
+#     if: cancelled()
+#     steps:
+#     - name: checkout
+#       uses: actions/checkout@v2
+#     - run: echo "this job will only run if C is canceled"

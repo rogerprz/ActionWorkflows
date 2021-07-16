@@ -1,5 +1,8 @@
-name: dependsOn-Job-17
-on: workflow_dispatch
+name: valet-project/dependsOn-Job-17
+on:
+  push:
+    branches:
+    - main
 jobs:
   A:
     runs-on: ubuntu-latest
@@ -15,27 +18,13 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - run: |
-        chmod +x gradlew
-        ./gradlew integrationTest
+    - run: exit 1
   C:
     needs:
     - B
     runs-on: ubuntu-latest
-    if: always() && needs.B.result == 'failure'
+    if: always && needs.B.result == 'failure'
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - run: |-
-        Write-Host "##vso[task.setvariable variable=agent.jobstatus;]canceled"
-        Write-Host "##vso[task.complete result=Canceled;]DONE"
-      shell: pwsh
-#   D:
-#     needs:
-#     - C
-#     runs-on: ubuntu-latest
-#     if: cancelled()
-#     steps:
-#     - name: checkout
-#       uses: actions/checkout@v2
-#     - run: echo "this job will only run if C is canceled"
+    - run: echo "FAILED B"

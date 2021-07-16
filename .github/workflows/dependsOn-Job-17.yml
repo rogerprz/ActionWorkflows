@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - run: this failure
+    - run: exit 1
   C:
     needs:
     - B

@@ -31,7 +31,7 @@ jobs:
     needs:
     - B
     runs-on: ubuntu-latest
-    if: needs.B.result == 'failure'
+    if: always() && needs.B.result == 'failure'
     steps:
     - name: checkout
       uses: actions/checkout@v2

@@ -1,13 +1,15 @@
-name: dependsOn-Job-17
-on: workflow_dispatch
-
+name: valet-project/dependsOn-Job-17
+on:
+  push:
+    branches:
+    - main
 jobs:
   A:
     runs-on: ubuntu-latest
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - run: echo "hello"
+    - run: echo 'Hello'
   B:
     needs:
     - A
@@ -21,29 +23,20 @@ jobs:
     needs:
     - B
     runs-on: ubuntu-latest
-    if: needs.B.result == 'failed'
+    if: needs.B.result == 'failure'
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - run: echo job B failed
+    - run: |-
+        Write-Host "##vso[task.setvariable variable=agent.jobstatus;]canceled"
+        Write-Host "##vso[task.complete result=Canceled;]DONE"
+      shell: pwsh
   D:
     needs:
-    - A
+    - C
     runs-on: ubuntu-latest
-    if: failure() &&  needs.A.result == 'success'
+    if: cancelled()
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - run: echo this will run when A runs and succeeds
-
-
-#  C:
-#    needs:
-#    - A
-#    runs-on: ubuntu-latest
-#    steps:
-#    - name: checkout
-#      uses: actions/checkout@v2
-#    - run: |
-#       echo w_result:${{ needs.A.result }}
-#       echo no_result:${{ needs.A }}
+    - run: echo "this job will only run if C is canceled"

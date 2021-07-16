@@ -19,6 +19,14 @@ jobs:
         chmod +x gradlew
         ./gradlew integrationTest
     continue-on-error: true
+  test:
+    needs:
+    - B
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - run: echo "NEEDS:${{ needs.B.result }}"
   C:
     needs:
     - B

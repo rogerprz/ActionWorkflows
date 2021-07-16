@@ -1,8 +1,5 @@
 name: valet-project/dependsOn-Job-17
-on:
-  push:
-    branches:
-    - main
+on: workflow_dispatch
 jobs:
   A:
     runs-on: ubuntu-latest

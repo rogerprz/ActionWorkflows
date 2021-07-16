@@ -1,4 +1,4 @@
-name: valet-project/dependsOn-Job-17
+name: dependsOn-Job-17
 on: workflow_dispatch
 jobs:
   A:

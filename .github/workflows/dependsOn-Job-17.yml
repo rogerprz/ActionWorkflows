@@ -12,7 +12,7 @@ jobs:
     needs:
     - A
     runs-on: ubuntu-latest
-    if: success() &&  needs.A.result == 'succeeded'
+    if: needs.A.result == 'Success'
     steps:
     - name: checkout
       uses: actions/checkout@v2

@@ -15,7 +15,9 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - run: hello lloe
+    - run: |
+        chmod +x gradlew
+        ./gradlew integrationTest
     continue-on-error: true
   C:
     needs:

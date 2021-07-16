@@ -12,20 +12,20 @@ jobs:
     needs:
     - A
     runs-on: ubuntu-latest
-    if: needs.A.result == 'Success'
-    steps:
-    - name: checkout
-      uses: actions/checkout@v2
-    - run: echo this will run when A runs and succeeds
-  C:
-    needs:
-    - A
-    runs-on: ubuntu-latest
     if: needs.A.result == 'success'
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - run: echo this will run when A runs and succeeds
+    - run: exit 1
+  C:
+    needs:
+    - B
+    runs-on: ubuntu-latest
+    if: needs.B.result == 'failed'
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - run: echo job B failed
   D:
     needs:
     - A

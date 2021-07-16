@@ -16,6 +16,7 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
     - run: exit 1
+    continue-on-error: true
   C:
     needs:
     - B

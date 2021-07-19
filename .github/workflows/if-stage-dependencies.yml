@@ -1,0 +1,42 @@
+name: aStageDependencies
+on:
+  push:
+    branches:
+    - none
+jobs:
+  A-A1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - id: printvar
+      run: echo "##vso[task.setvariable variable=shouldrun;isOutput=true]true"
+      shell: bash
+  A-A2:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - id: printvar
+      run: echo "##vso[task.setvariable variable=shouldrun;isOutput=true]true"
+      shell: bash
+  B-B1:
+    needs:
+    - A-A1
+    - A-A2
+    runs-on: ubuntu-latest
+    if: in(needs.A-A2.A1.result, 'Succeeded', 'SucceededWithIssues', 'Skipped')
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - run: echo hello from Job B1
+  B-B2:
+    needs:
+    - A-A1
+    - A-A2
+    runs-on: ubuntu-latest
+    if: needs.A-A2.A2.outputs['printvar.shouldrun'] == 'true'
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - run: echo hello from Job B2

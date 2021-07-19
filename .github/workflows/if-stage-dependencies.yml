@@ -27,7 +27,7 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - run: echo hello from Job B1
+    - run: echo ${{needs.A-A2.outputs}}
   B-B2:
     needs:
     - A-A1

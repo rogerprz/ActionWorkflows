@@ -11,6 +11,8 @@ jobs:
       run: echo "##vso[task.setvariable variable=shouldrun;isOutput=true]true"
       shell: bash
   A-A2:
+    outputs: 
+      text: "HELLO"
     runs-on: ubuntu-latest
     steps:
     - name: checkout

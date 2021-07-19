@@ -8,34 +8,34 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
     - id: printvar
-      run: echo "##vso[task.setvariable variable=shouldrun;isOutput=true]true"
+      run: echo "This is StageA JobA1"
       shell: bash
   A-A2:
-    outputs: 
-      text: "HELLO"
     runs-on: ubuntu-latest
+    outputs:
+      text: "hello"
     steps:
     - name: checkout
       uses: actions/checkout@v2
     - id: printvar
-      run: echo "##vso[task.setvariable variable=shouldrun;isOutput=true]true"
+      run: echo "this is StageA jobA2"
       shell: bash
   B-B1:
     needs:
     - A-A1
     - A-A2
     runs-on: ubuntu-latest
-    if: needs.A-A1.result == 'success'
+    if: stageDependencies.A.A1.result == 'success'
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - run: echo ${{needs.A-A2.outputs}}
+    - run: echo hello from Job B1
   B-B2:
     needs:
     - A-A1
     - A-A2
     runs-on: ubuntu-latest
-    if: needs.A-A2.outputs.text == 'HELLO'
+    if: stageDependencies.A.A2.outputs['text'] == 'hello'
     steps:
     - name: checkout
       uses: actions/checkout@v2

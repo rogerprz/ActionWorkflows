@@ -1,4 +1,4 @@
-name: aStageDependencies
+name: A-StageDependencies
 on: workflow_dispatch
 
 jobs:

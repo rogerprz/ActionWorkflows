@@ -1,8 +1,6 @@
 name: aStageDependencies
-on:
-  push:
-    branches:
-    - none
+on: workflow_dispatch
+
 jobs:
   A-A1:
     runs-on: ubuntu-latest

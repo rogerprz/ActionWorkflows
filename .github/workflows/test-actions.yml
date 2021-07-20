@@ -30,11 +30,9 @@ jobs:
     - run: echo "bbbbb"
   B-B2:
     needs:
-    - B-B1
     - A-A1
-    - A-A2
     runs-on: ubuntu-latest
-    if: always() && needs.B-B1.result == 'failure'
+    if: needs.A-A1.result == 'failure' || needs.A-A1.result ==  'success'
     steps:
     - name: checkout
       uses: actions/checkout@v2

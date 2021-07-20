@@ -31,7 +31,7 @@ jobs:
     needs:
     - A-A1
     runs-on: ubuntu-latest
-    if: (needs.A-A1.result == ('success' || 'failure'))
+    if: contains("successOrfailure", needs.A-A1.result)
 #   if: (needs.A-A1.result == 'failure' || needs.A-A1.result ==  'success')
     steps:
     - name: checkout

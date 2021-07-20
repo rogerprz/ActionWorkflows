@@ -1,0 +1,41 @@
+name: A-TestActions
+on: workflow_dispatch
+
+jobs:
+  A-A1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - id: printvar
+      run: echo "This is StageA JobA1"
+      shell: bash
+  A-A2:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - id: printvar
+      run: echo "this is StageA jobA2"
+      shell: bash
+  B-B1:
+    needs:
+    - A-A1
+    - A-A2
+    runs-on: ubuntu-latest
+    if: needs.A-A1.result == 'success'
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - run: exit 1
+  B-B2:
+    needs:
+    - B-B1
+    - A-A1
+    - A-A2
+    runs-on: ubuntu-latest
+    if: always() && needs.B-B1.result == 'failure'
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - run: echo hello from Job B2

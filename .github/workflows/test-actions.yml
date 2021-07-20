@@ -23,7 +23,7 @@ jobs:
     - A-A1
     - A-A2
     runs-on: ubuntu-latest
-    if: needs.A-A1.result == ( 'failure' ||  'success')
+    if: (needs.A-A1.result == ( 'failure' ||  'success'))
     steps:
     - name: checkout
       uses: actions/checkout@v2

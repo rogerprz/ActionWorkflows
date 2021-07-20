@@ -27,7 +27,7 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - run: exit 1
+    - run: echo "bbbbb"
   B-B2:
     needs:
     - B-B1

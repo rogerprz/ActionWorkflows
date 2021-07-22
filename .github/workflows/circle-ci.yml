@@ -1,0 +1,17 @@
+name: valet-dev-testing/circle-when/build
+on:
+  workflow_dispatch:
+jobs:
+  job_with_optional_custom_checkout:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo ${{ matrix.custom_checkout }}
+    strategy:
+      matrix:
+        param_a:
+        - any non-empty string is truthy
+        - a different string value
+        - default A
+        param_b:
+        - B
+        - default B

@@ -8,8 +8,11 @@ jobs:
 
   build-one:
     runs-on: ubuntu-latest  # For a list of available runner types, refer to
-    timeout-minutes: 1
+#     timeout-minutes: 1
     steps:
     - uses: actions/checkout@v2
     - run: ruby timeout.rb
+      timeout-minutes: 1
+
+    - run: echo "hello worlds
       

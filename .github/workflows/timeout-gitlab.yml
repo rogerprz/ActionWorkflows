@@ -11,8 +11,9 @@ jobs:
 #     timeout-minutes: 1
     steps:
     - uses: actions/checkout@v2
+    - name: timeout
       timeout-minutes: 1
-    - run: ruby timeout.rb
+      run: ruby timeout.rb
 
     - run: echo "hello worlds
       
